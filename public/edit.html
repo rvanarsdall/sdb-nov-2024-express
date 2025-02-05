@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Movie - Flick Fusion</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        color: #343a40;
+      }
+      .form-control,
+      .btn {
+        border-radius: 0.5rem;
+      }
+      .btn {
+        transition: all 0.3s ease;
+      }
+      .btn:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container py-5">
+      <h1 class="text-center mb-4">Edit Movie</h1>
+      <p class="text-center text-secondary mb-5">Modify movie details below</p>
+
+      <div class="row mb-5">
+        <div class="col-md-6 offset-md-3">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title">Edit Movie</h5>
+              <form id="editMovieForm">
+                <div class="mb-3">
+                  <label for="editMovieTitle" class="form-label"
+                    >Movie Title</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editMovieTitle"
+                    placeholder="Enter movie title"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editMovieGenre" class="form-label">Genre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editMovieGenre"
+                    placeholder="Enter genre"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editMovieYear" class="form-label"
+                    >Year Published</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="editMovieYear"
+                    placeholder="Enter year"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editInventoryQuantity" class="form-label"
+                    >Inventory Quantity</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="editInventoryQuantity"
+                    placeholder="Enter quantity"
+                  />
+                </div>
+                <button type="submit" class="btn btn-success w-100">
+                  Update Movie
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

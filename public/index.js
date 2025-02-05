@@ -89,11 +89,29 @@ function displayMovieInventory(movies) {
                 <td>${movie.inventoryQuantity}</td>
                 <td>
                   <button class="btn btn-warning btn-sm">Update</button>
-                  <button class="btn btn-danger btn-sm">Delete</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteMovie('${movie.id}')">Delete</button>
                 </td>
             </tr>
     `;
   });
   let movieTableBody = document.querySelector("#movieTableBody");
   movieTableBody.innerHTML = movieRows;
+}
+
+async function deleteMovie(movieId) {
+  console.log(movieId);
+  //  1. The endpoint you want to use for deletion
+
+  const DELETE_MOVIE_URL = API_URL + "delete/" + movieId;
+  //  2. Conduct your fetch with the URL and make sure your method is "DELETE"
+  const response = await fetch(DELETE_MOVIE_URL, {
+    method: "DELETE",
+  });
+
+  // 3. Convert your Response to a JSON Object
+  const data = await response.json();
+  //  4. Call your function to re-fetch all of the data to display on the page.
+  console.log(data);
+
+  getAllMovies();
 }
