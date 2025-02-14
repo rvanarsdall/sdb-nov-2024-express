@@ -1,5 +1,6 @@
 // Goes at the top of the file
 const router = require("express").Router();
+const { v4: uuidv4 } = require("uuid"); // This will generate an ID for us
 const save = require("../helper/save");
 const read = require("../helper/read");
 // In reference to the path of the app.js
@@ -39,6 +40,7 @@ router.post("/add", (req, res) => {
       genre,
       yearPublished,
       inventoryQuantity,
+      id: uuidv4(),
     };
 
     // 3. Create a variable to store the movieArray and read the current file
@@ -50,7 +52,7 @@ router.post("/add", (req, res) => {
     movieArray.push(movieObject);
 
     // 5. Save the Data to the File using the Save Function
-    save(movieArray, DB_PATH)
+    save(movieArray, DB_PATH);
 
     //  send the full array back to the client
     res.json({ message: `route works`, movies: movieArray });
