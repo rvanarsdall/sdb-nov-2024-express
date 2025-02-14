@@ -59,5 +59,65 @@ router.post("/add", (req, res) => {
   }
 });
 
+
+// Create an endpoint for /delete
+
+// Request Type: DELETE
+// Response Send: "route works"
+// localhost:4000/movie/delete
+
+router.delete("/delete/:id", (req, res) => {
+  try {
+    // 1. Read the DB Path file and store it in a variable
+    let movieArray = read(DB_PATH);
+    // 2. Get the id from the request parameters
+    const id = req.params.id;
+    // 3. Use the .filter() method to remove the movie with the id
+    movieArray = movieArray.filter((movie, index) => movie.id != id);
+    // 4. Save the Data to the File using the Save Function
+    save(movieArray, DB_PATH);
+    // 5. Send the full array back to the client
+    res.json({ message: `route works`, movies: movieArray });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+}
+);
+
+// Create an endpoint for /update/:id
+
+// Request Type: PUT
+// Response Send: "route works"
+// localhost:4000/movie/update/:id
+
+router.put("/update/:id", (req, res) => {
+  try {
+    // 1. Read the DB Path file and store it in a variable
+    let movieArray = read(DB_PATH);
+    // 2. Get the id from the request parameters
+    const id = req.params.id;
+    // 3. Get the title, genre, yearPublished, and inventoryQuantity from the request body
+    const { title, genre, yearPublished, inventoryQuantity } = req.body;
+    // 4. Use the .map() method to update the movie with the id
+    movieArray = movieArray.map((movie) => {
+      if (movie.id == id) {
+        movie.title = title;
+        movie.genre = genre;
+        movie.yearPublished = yearPublished;
+        movie.inventoryQuantity = inventoryQuantity;
+      }
+      return movie;
+    });
+    // 5. Save the Data to the File using the Save Function
+    save(movieArray, DB_PATH);
+    // 6. Send the full array back to the client
+    res.json({ message: `route works`, movies: movieArray });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+}
+);
+  
+
 // Goes at the end of the file
 module.exports = router;

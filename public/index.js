@@ -88,12 +88,40 @@ function displayMovieInventory(movies) {
                 <td>${movie.yearPublished}</td>
                 <td>${movie.inventoryQuantity}</td>
                 <td>
-                  <button class="btn btn-warning btn-sm">Update</button>
-                  <button class="btn btn-danger btn-sm">Delete</button>
+                  <button class="btn btn-warning btn-sm" onclick="updateMovie('${movie.id}')">Update</button>
+                  <button class="btn btn-danger btn-sm" onclick="deleteMovie('${movie.id}')">Delete</button>
                 </td>
             </tr>
     `;
   });
   let movieTableBody = document.querySelector("#movieTableBody");
   movieTableBody.innerHTML = movieRows;
+}
+
+async function deleteMovie(id) {
+  console.log("Delete Movie Works");
+  console.log(id);
+  // 1. What is the endpoint I'm trying to reach?
+  const DELETE_MOVIE_URL = API_URL + "delete/" + id;
+  // 2. Create a Try Catch Block
+
+  try {
+    // 3. Use the fetch() api to send a request to get all the movies
+    const response = await fetch(DELETE_MOVIE_URL, {
+      method: "DELETE",
+    });
+    // 4. Use response.json() method to parse the JSON response from the Server
+    const data = await response.json();
+    console.log(data);
+    // 5. Refetch all data to display on the page.
+    getAllMovies();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function updateMovie(id) {
+  // 1. change the url to /edit?id=${id}
+
+  window.location.href = `edit.html?id=${id}`;
 }
